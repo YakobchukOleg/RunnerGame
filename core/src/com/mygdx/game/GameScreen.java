@@ -16,8 +16,15 @@ public class GameScreen implements Screen {
     private SpriteBatch batch;
     private Texture textureBackground;
     private Texture textureSand;
+
     private float worldX;
 
+    private float groundHeight = 190.0f;
+    private float playerAnchor = 200.0f;
+
+    public float getPlayerAnchor() {
+        return playerAnchor;
+    }
 
     public GameScreen(RunnerGame runnerGame, SpriteBatch batch){
         this.runnerGame = runnerGame;

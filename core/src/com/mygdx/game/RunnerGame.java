@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class RunnerGame extends Game {
@@ -22,7 +23,7 @@ public class RunnerGame extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		gameScreen = new GameScreen(this, batch);
-		viewport = new FillViewport(1280, 720);
+		viewport = new FitViewport(1280, 720);
 		setScreen(gameScreen);
 	}
 
