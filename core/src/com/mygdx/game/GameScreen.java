@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -12,7 +14,9 @@ import java.time.temporal.Temporal;
 public class GameScreen implements Screen {
     private RunnerGame runnerGame;
     private SpriteBatch batch;
-    private Texture texture;
+    private Texture textureBackground;
+    private Texture textureSand;
+    private float worldX;
 
 
     public GameScreen(RunnerGame runnerGame, SpriteBatch batch){
@@ -22,14 +26,25 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        this.texture = new Texture("badlogic.jpg");
+        textureBackground = new Texture("bg.png");
+        textureSand = new Texture("ground.png");
     }
 
     @Override
     public void render(float delta) {
+        update(delta);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.draw(texture, 0, 0);
+        batch.draw(textureBackground, 0, 0);
+        for (int i = 0; i < 8; i++) {
+            batch.draw(textureSand, i * 200 - worldX % 200, 0);
+        }
         batch.end();
+    }
+
+    public void update(float dt){
+        worldX += 200.0f * dt;
     }
 
     @Override
@@ -55,6 +70,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        textureBackground.dispose();
+        textureSand.dispose();
     }
 }

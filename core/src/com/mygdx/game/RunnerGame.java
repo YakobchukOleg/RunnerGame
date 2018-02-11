@@ -29,8 +29,6 @@ public class RunnerGame extends Game {
 	@Override
 	public void render () {
 		float dt = Gdx.graphics.getDeltaTime();
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		getScreen().render(dt);
 	}
 
