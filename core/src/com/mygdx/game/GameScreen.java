@@ -22,6 +22,8 @@ public class GameScreen implements Screen {
     private float groundHeight = 190.0f;
     private float playerAnchor = 200.0f;
 
+    private Player player;
+
     public float getPlayerAnchor() {
         return playerAnchor;
     }
@@ -35,6 +37,7 @@ public class GameScreen implements Screen {
     public void show() {
         textureBackground = new Texture("bg.png");
         textureSand = new Texture("ground.png");
+        player = new Player(this);
     }
 
     @Override
@@ -47,10 +50,12 @@ public class GameScreen implements Screen {
         for (int i = 0; i < 8; i++) {
             batch.draw(textureSand, i * 200 - worldX % 200, 0);
         }
+        player.render(batch);
         batch.end();
     }
 
     public void update(float dt){
+        player.update(dt);
         worldX += 200.0f * dt;
     }
 

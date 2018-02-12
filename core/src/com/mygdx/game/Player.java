@@ -18,6 +18,8 @@ public class Player {
 
     private float score;
 
+    private float time;
+
     private final int WIGHT = 100;
     private final int HEIGHT = 100;
 
@@ -35,6 +37,14 @@ public class Player {
     }
 
     public void render(SpriteBatch batch){
+        int frame = (int) (time / 0.1f);
+        frame = frame % 6;
+        batch.draw(texture, gameScreen.getPlayerAnchor(), position.y, frame * 100, 0, WIGHT, HEIGHT);
+    }
 
+    public void update(float dt){
+        time += velocity.x * dt / 300.0f;
+
+        position.mulAdd(velocity, dt);
     }
 }
