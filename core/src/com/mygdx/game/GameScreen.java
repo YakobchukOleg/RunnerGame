@@ -17,8 +17,6 @@ public class GameScreen implements Screen {
     private Texture textureBackground;
     private Texture textureSand;
 
-    private float worldX;
-
     private float groundHeight = 190.0f;
     private float playerAnchor = 200.0f;
 
@@ -26,6 +24,10 @@ public class GameScreen implements Screen {
 
     public float getPlayerAnchor() {
         return playerAnchor;
+    }
+
+    public float getGroundHeight() {
+        return groundHeight;
     }
 
     public GameScreen(RunnerGame runnerGame, SpriteBatch batch){
@@ -48,7 +50,7 @@ public class GameScreen implements Screen {
         batch.begin();
         batch.draw(textureBackground, 0, 0);
         for (int i = 0; i < 8; i++) {
-            batch.draw(textureSand, i * 200 - worldX % 200, 0);
+            batch.draw(textureSand, i * 200 - player.getPosition().x % 200, 0);
         }
         player.render(batch);
         batch.end();
@@ -56,7 +58,6 @@ public class GameScreen implements Screen {
 
     public void update(float dt){
         player.update(dt);
-        worldX += 200.0f * dt;
     }
 
     @Override
