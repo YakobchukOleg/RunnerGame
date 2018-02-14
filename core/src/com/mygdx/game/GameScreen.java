@@ -21,6 +21,7 @@ public class GameScreen implements Screen {
     private float playerAnchor = 200.0f;
 
     private Player player;
+    private Cactus[] enemies;
 
     public float getPlayerAnchor() {
         return playerAnchor;
