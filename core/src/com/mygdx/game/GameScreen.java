@@ -70,8 +70,23 @@ public class GameScreen implements Screen {
         batch.end();
     }
 
+    public float getRightestEnemy() {
+        float maxValue = 0.0f;
+        for (int i = 0; i < enemies.length; i++) {
+            if (enemies[i].getPosition().x > maxValue) {
+                maxValue =  enemies[i].getPosition().x;
+            }
+        }
+        return maxValue;
+    }
+
     public void update(float dt){
         player.update(dt);
+        for (int i =0; i<enemies.length; i++) {
+            if (enemies[i].getPosition().x < player.getPosition().x - playerAnchor - 80) {
+                enemies[i].setPosition(getRightestEnemy() + MathUtils.random(400, 900), groundHeight);
+            }
+        }
     }
 
     @Override
