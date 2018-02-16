@@ -3,8 +3,10 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import javax.sound.midi.Receiver;
 import java.util.Vector;
 
 /**
@@ -17,6 +19,8 @@ public class Player {
     private Vector2 position;
     private Vector2 velocity;
 
+    private Rectangle rectangle;
+
     private float score;
 
     private float time;
@@ -28,11 +32,16 @@ public class Player {
         return position;
     }
 
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
     public Player(GameScreen gameScreen){
         this.gameScreen = gameScreen;
         this.texture = new Texture("runner.png");
         this.position = new Vector2(0, 190);
         this.velocity = new Vector2(240.0f, 0.0f);
+        this.rectangle = new Rectangle(position.x, position.y, WIGHT, HEIGHT);
         this.score = 0;
 
     }
@@ -57,5 +66,6 @@ public class Player {
         position.mulAdd(velocity, dt);
         velocity.x += 5.0f * dt;
         score += velocity.x * dt / 5.0f;
+        rectangle.setPosition(position.x, position.y);
     }
 }
